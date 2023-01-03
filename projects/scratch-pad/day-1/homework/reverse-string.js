@@ -17,14 +17,24 @@
  *     when to stop looping?
  *  c. how do you access individual characters of a String?
  *  d. how do you concatenate Strings? What operator do we use?
+ * 
+ * make a for loop that gets the length of the string starts at the final number
+ *  substracts on every loop and prints the next character associated with that number
+ * 
  */
 
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
-    
+    var reversed = []
+    var inputLen = input.length - 1
+    while (inputLen > -1) {
+      reversed.push(input[inputLen])
+      inputLen --
+      if (inputLen === -1) {
+        var reversedString = reversed.join("")
+        return reversedString
+      }
+    }
     // YOUR CODE GOES ABOVE HERE //
 }
 

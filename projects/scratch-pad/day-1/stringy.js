@@ -65,7 +65,7 @@ function toUpperCase(string) {
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
     //function that returns string to dash case
-    var newString = (string.replace(" ", "-").toLowerCase())
+    var newString = (string.replaceAll(" ", "-").toLowerCase())
     return newString
 
     // YOUR CODE ABOVE HERE //
@@ -88,13 +88,12 @@ function beginsWith(string, char) {
 // if input string and character match, return true
 // else false
 
-function beginsWith(string, char) {
-    if (string[0] === char[0]) {
+    if (string[0].toLowerCase() === char.toLowerCase()) {
         return true
     }else{
         return false
     }
-  }
+  
 
     // YOUR CODE ABOVE HERE //
 }
@@ -119,14 +118,13 @@ function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
 
     var finalChar = string[string.length - 1]
-    if (finalChar === char) {
-        console.log("true")
-        return true
+    if (finalChar.toLowerCase() === char.toLowerCase()) {
+      console.log("true")
+      return true
     }else {
-        console.log("false")
-        return false
+      console.log("false")
+      return false
     }
-
     // YOUR CODE ABOVE HERE //
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +139,7 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-    var concatted = string1.concat(string2)
+    var concatted = stringOne.concat(stringTwo)
     return concatted
 
 
@@ -161,7 +159,7 @@ function concat(stringOne, stringTwo) {
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
-    joinedStrings = args.join("")
+    var joinedStrings = args.join("")
     return joinedStrings
 
     // YOUR CODE ABOVE HERE //
@@ -212,23 +210,16 @@ function longest(stringOne, stringTwo) {
 
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-    var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    var letter1 = stringOne[0];
-    var letter1Position = alphabet.indexOf(letter1)+1;
-    var letter2 = stringTwo[0];
-    var letter2Position = alphabet.indexOf(letter2)+1;
-  
-    if (letter1Position < letter2Position) {
+    if (stringOne < stringTwo) {
+        console.log(stringOne)
         return 1
-    } else if (letter1Position > letter2Position) {
+      } else if (stringOne > stringTwo) {
+        console.log(stringTwo)
         return -1
-    } else if (letter1Position === letter2Position) {
+      } else {
+        console.log("Equal")
         return 0
-    }
-//console.log(letter1Position)
-//console.log(letter2Position)
-
-
+      }
     // YOUR CODE ABOVE HERE //
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -244,21 +235,16 @@ function sortAscending(stringOne, stringTwo) {
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-    var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    var letter1 = stringOne[0];
-    var letter1Position = alphabet.indexOf(letter1)+1;
-    var letter2 = stringTwo[0];
-    var letter2Position = alphabet.indexOf(letter2)+1;
-  
-    
-    if (letter1Position > letter2Position) {
-      return 1
-    } else if (letter1Position < letter2Position) {
-      return -1
-    } else if (letter1Position === letter2Position) {
-      return 0
-    }   
-
+    if (stringOne > stringTwo) {
+        console.log(stringOne)
+        return 1
+      } else if (stringOne < stringTwo) {
+        console.log(stringTwo)
+        return -1
+      } else {
+        console.log("Equal")
+        return 0
+      }
 
     // YOUR CODE ABOVE HERE //
 }

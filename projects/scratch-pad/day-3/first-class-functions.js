@@ -10,12 +10,22 @@
  * Given an input base to test against, which could be a String or Number, 
  * return a Function that tests whether a given value is greater than the 
  * base.
+ * \
+ * test = return true or false
+ * 
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    return function (x) {
+        if (x > base) {
+          console.log("true")
+          return true
+        } else {
+          console.log("false")
+          return false
+        }
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -28,6 +38,15 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
+    return function (x) {
+        if (x < base) {
+          console.log("true")
+          return true
+        } else {
+          console.log("false")
+          return false
+        }
+    }
     
     
     
@@ -42,8 +61,15 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    return function (string) {
+        startsWith = startsWith.toLowerCase()
+        string = string.toLowerCase()
+          if (string.startsWith(startsWith)) {
+            return true
+          } else {
+            return false
+          }
+      }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -56,7 +82,15 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    return function (string) {
+        endsWith = endsWith.toLowerCase()
+        string = string.toLowerCase()
+          if (string.endsWith(endsWith)) {
+            return true
+          } else {
+            return false
+          }
+      }
     
     
     // YOUR CODE ABOVE HERE //
@@ -69,12 +103,16 @@ function createEndsWithFilter(endsWith) {
  * TIP: You need to loop over the Strings, right? We need to pass each String to 
  * the modify Function, but we need to collect the results into some collection.
  */
-function modifyStrings(strings, modify) {
+function modifyStrings(strings, modify) {// modify = function(){}
     // YOUR CODE BELOW HERE //
+    //
     
-    
-    
-    
+    var output = [];
+    for (var i = 0; i < strings.length; i++) {
+      output.push(modify(strings[i]))
+      // return strings
+  }
+  return output
     // YOUR CODE ABOVE HERE //
 }
 
@@ -87,12 +125,31 @@ function modifyStrings(strings, modify) {
  * 
  * TIP: You need to loop over the Strings, right? And pass them to the test?
  */
-function allStringsPass(strings, test) {
+function allStringsPass(strings, test) { // modify = function(){}
     // YOUR CODE BELOW HERE //
+    for (let i = 0; i < contacts.length; i++) {
+      if (i !== contacts.length - 1 ) {
+        fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast.concat("\n"))
+      } else {
+        fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast)
+      }
     
     
-    
-    
+
+
+
+     //pass strings to test then push the result to output
+     
+     // test if output indexes have been replaced with boolean value
+    //  testedVars = test(strings)
+    //   if (testedVars === true) {
+    //     return true
+    //     //testedVars === true
+    //   } else {
+    //     //testedVars === false
+    //     return false
+    //   }
+ }   
     // YOUR CODE ABOVE HERE //
 }
 

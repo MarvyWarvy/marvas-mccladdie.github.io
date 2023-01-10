@@ -68,6 +68,7 @@ function printObjectKeys(object) {
 
    
   for (key in object) {
+    var key = key
     console.log(key)
   }   
 
@@ -98,7 +99,8 @@ function printObjectValues(object) {
   //function accepts object
   //loops through object and prints its values
   for (value in object) {
-    console.log(object[value])
+    var value = object[value]
+    console.log(value)
   }   
   
   
@@ -130,7 +132,7 @@ function printObjectValuesInReverse(object) {
   
   var objLen = Object.keys(object).length - 1
   for (var i = objLen; i >= 0; i--) {
-    var objValues = Object.keys(object)[i]
+    var objValues = Object.values(object)[i]
     console.log(objValues)
   }
   

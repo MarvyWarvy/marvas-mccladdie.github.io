@@ -22,20 +22,33 @@
  *      4. removeContact(contact): takes a contact object to be removed from 
  *         the contact-list.
  *      5. add a printAllContactNames() Function to your makeContactList() factory. The printAllContactNames() Function should 
- *         return a String formated with all the full-names of the separated 
+ *         return a String formated with all the full-names separated 
  *         with a line-break, like so:
  *          
  *         myContacts.printAllContactNames(); // => Max Gaudin
  *                                                  John Fraboni
  *                                                  Kaelyn Chresfield
+ * 
+ *         need a loop to loop through the contacts list and grab name first name last. then need to concatenate them into one
  *          
  *          WARNING: To pass this test, the LAST full name should have NO
  *          new-line character added after it!
+ * 
+ * have to get test passing for make contact first
+ * 
+ * 
  */
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
 
+    var createUser = {
+        id: id,
+        nameFirst: nameFirst,
+        nameLast: nameLast,
+      }
+      return createUser
+    
 } 
 
 
@@ -43,14 +56,46 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = []
     
     return {
-        // we implemented the length api for you //
-        length: function() {
-            return contacts.length;
+      // we implemented the length api for you //
+      length: function() {
+          return contacts.length;
+      },
+      addContact: function(contact) {
+        contacts.push(contact);
+      },
+      findContact: function(fullName) {
+        for (var i = 0; i < contacts.length; i++) { 
+          var input = fullName
+          input = input.split(" ").join("")
+          if (contacts[i].nameFirst + contacts[i].nameLast === input) {
+            console.log("true")
+            console.log(contacts[i])
+            return contacts[i]
+          } else {
+            console.log("false")
+            return undefined
+          }
         }
-    }
+      },
+      removeContact(contact) {
+        contacts.splice(contact,1)
+      },
+      printAllContactNames: function() {
+        var fullNames = ""
+        for (let i = 0; i < contacts.length; i++) {
+          if (i === contacts.length - 1 ) {
+            fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast)
+            return fullNames
+          } else {
+            fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast.concat("\n"))
+            return fullNames
+          }
+        }
+      }
+  }
 }
 
 

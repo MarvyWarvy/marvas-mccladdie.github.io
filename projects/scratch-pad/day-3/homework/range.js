@@ -23,10 +23,22 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
+    // use loop to verify if num is greater than starting nuum. if so --> arr = [nums greater than starting num]
+    // if num is > ending num stop
     
     
-    
-    
+    var range = []
+    if (start < end) {
+      for (var i = start; i <= end; i++) {
+        range.push(i)
+      }
+    } else if(start > end) {
+      for (var i = start; i >= end; i--) {
+        range.push(i)
+      }
+    }
+    //console.log(range)
+    return range
     // YOUR CODE GOES ABOVE HERE //
 }
 

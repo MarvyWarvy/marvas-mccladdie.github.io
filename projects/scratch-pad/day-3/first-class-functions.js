@@ -127,29 +127,17 @@ function modifyStrings(strings, modify) {// modify = function(){}
  */
 function allStringsPass(strings, test) { // modify = function(){}
     // YOUR CODE BELOW HERE //
-    for (let i = 0; i < contacts.length; i++) {
-      if (i !== contacts.length - 1 ) {
-        fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast.concat("\n"))
-      } else {
-        fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast)
-      }
-    
-    
 
-
-
-     //pass strings to test then push the result to output
+    for (let i = 0; i < strings.length; i++) {
      
-     // test if output indexes have been replaced with boolean value
-    //  testedVars = test(strings)
-    //   if (testedVars === true) {
-    //     return true
-    //     //testedVars === true
-    //   } else {
-    //     //testedVars === false
-    //     return false
-    //   }
- }   
+      
+      if (test(strings[i]) === false) {
+        return false
+      } 
+
+    }
+    return true    
+
     // YOUR CODE ABOVE HERE //
 }
 

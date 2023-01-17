@@ -1,6 +1,7 @@
 // This makes the arguments variable behave the way we want it to and a few
 // other things. For more info:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+//
 'use strict';
 
 var _ = {};
@@ -20,6 +21,13 @@ var _ = {};
 *   _.identity(5) === 5
 *   _.identity({a: "b"}) === {a: "b"}
 */
+
+
+_.identity = function(value) {
+    //return value unchanged
+    return value;
+};
+
 
 
 /** _.typeOf
@@ -43,6 +51,17 @@ var _ = {};
 */
 
 
+_.typeOf = function(val) {
+    if (Array.isArray(val)) {
+        return "array"
+    } else if ( val === null) {
+        return "null"
+    } else {
+        return typeof val
+    }
+}
+
+
 /** _.first
 * Arguments:
 *   1) An array
@@ -60,6 +79,37 @@ var _ = {};
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+
+_.first = function(array, num) {
+    let output = []
+    //test to see if array
+    if (!(Array.isArray(array))) {
+        return []
+
+        //check to see if number is negative
+    } else if (num < 0) {
+        return []
+
+        //check to see if input number is greater than array length
+    } else if (num > array.length ) {
+        return array
+
+        //check to see if input number is empty or not a number
+    } else if (!num || typeof num !== "number") {
+        return array[0]
+
+        //
+    } else {
+        for (let i = 0; i < num; i++) {
+            output.push(array[i])
+        }
+        return output
+    }
+
+    
+    
+};
+
 
 
 /** _.last
@@ -81,6 +131,38 @@ var _ = {};
 */
 
 
+_.last = function(array, num) {
+    let output = []
+    //test to see if array
+    if (!(Array.isArray(array))) {
+        return []
+
+        //check to see if number is negative
+    } else if (num < 0) {
+        return []
+
+        //check to see if input number is greater than array length
+    } else if (num > array.length ) {
+        return array
+
+        //check to see if input number is empty or not a number
+    } else if (!num || typeof num !== "number") {
+        return array[array.length - 1]
+
+        //
+    } else {
+        for (let i = num - 1; i < array.length; i++) {
+            output.push(array[i])
+        }
+        return output
+    }
+
+    
+    
+};
+
+
+
 /** _.indexOf
 * Arguments:
 *   1) An array
@@ -98,6 +180,17 @@ var _ = {};
 */
 
 
+_.indexOf = function(array, value) {
+    //For loop to iterate and check if any ideces match value
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return i
+        }
+    } return -1
+}
+
+
+
 /** _.contains
 * Arguments:
 *   1) An array
@@ -112,6 +205,14 @@ var _ = {};
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+
+//_.contains = function(array, value) {
+    
+//     for (let i = 0; i < array.length; i++) {
+//         array[i] === value ?  return true :  false
+//     }
+// }
 
 
 /** _.each
@@ -131,6 +232,26 @@ var _ = {};
 */
 
 
+_.each = function(collection, func) {
+    // determine if collection is an array
+    if (Array.isArray(collection)) {
+        //iterate using a for loop
+        for (let i = 0; i < collection.length; i++) {
+            //call funcition on each element passinng the element, its index, and the collection itself
+            func(collection[i], i, collection)
+        }
+    } else { //else its an object
+        //iterat using a for in loop
+        for (let key in collection) {
+            //invoke function on current value, key, and collection
+            func(collection[key], key, collection);
+        }
+    }
+};
+
+
+
+
 /** _.unique
 * Arguments:
 *   1) An array
@@ -140,6 +261,12 @@ var _ = {};
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+
+// _.unique = function(array) {
+//     let newArr = [];
+//     _.indexOf(array)
+// }
 
 
 /** _.filter
@@ -157,6 +284,23 @@ var _ = {};
 * Extra Credit:
 *   use _.each in your implementation
 */
+
+
+//_.filter = function(array, func) 
+    //new array that will be returned at end
+//     let newArr = []
+//     func = _.each()
+//     //need a for loop to iterate through array and invoke the func on each item
+//     for (i = 0; i < array.length; i++) {
+        
+//     //if function tests index of array and its true, push array index to newArr
+//        if (func(array[i]) === true) {
+//         newArr.push(array[i])
+//        }
+        
+//     }
+//     return newArr
+// }
 
 
 /** _.reject
@@ -192,6 +336,18 @@ var _ = {};
 }
 */
 
+_.partition = function(array, func) {
+    let output = [[],[]]
+    //for loop for each element in array
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array)) {
+            output[0].push(array[i])
+        } else {
+            output[1].push(array[i])
+        }
+    }
+    return output
+}
 
 /** _.map
 * Arguments:
@@ -208,7 +364,24 @@ var _ = {};
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+_.map = function(collection, func) {
+    let retVal = []
+    // for loop to run each element in collection
 
+    if (Array.isArray(collection)) {
+        for (let i = 0; i < collection.length; i++) {
+            retVal.push(func(collection[i], i, collection)) 
+        }
+    }
+    if (!Array.isArray(collection)) {
+        for (let prop in collection) {
+            retVal.push(func(Object.values(collection[prop]), Object.keys(collection), collection))
+        }
+    }
+    
+//retVal.push(func(collection.hasOwnProperty(prop)), collection[prop], collection)
+    return retVal
+}
 
 /** _.pluck
 * Arguments:

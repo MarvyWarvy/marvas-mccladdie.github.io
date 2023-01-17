@@ -84,21 +84,22 @@ function makeContactList() {
         contacts.splice(contact,1)
       },
       printAllContactNames: function() {
-        var fullNames = ""
+        let fullNames = ""
+
         for (let i = 0; i < contacts.length; i++) {
-          if (i === contacts.length - 1 ) {
-            fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast)
-            return fullNames
+          if (i !== contacts.length - 1) {
+            fullNames += contacts[i].nameFirst + " " + contacts[i].nameLast + "\n"
           } else {
-            fullNames += contacts[i].nameFirst.concat(" ").concat(contacts[i].nameLast.concat("\n"))
-            return fullNames
+            fullNames += contacts[i].nameFirst + " " + contacts[i].nameLast
           }
-        }
       }
+      return fullNames
+    }
   }
 }
 
 
+//
 
 
 // YOUR CODE GOES ABOVE HERE //

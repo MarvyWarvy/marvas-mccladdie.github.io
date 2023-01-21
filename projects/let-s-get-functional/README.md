@@ -1,7 +1,7 @@
 # lets-get-functional
 
 An exercise in problem solving in the functional idiom.
-
+//
 ## Step 0 - Release lodown
  - If you haven't release your lodown library to `npm` (node package manager), follow the steps in this video to do so:
 
@@ -34,6 +34,7 @@ const _ = require('lodown-oliviasaborush');
  - **Input**: `Array`
  - **Output**: `Number`
  - **Constraints**: use `filter`
+
 
 ### 2: `femaleCount`
  - **Objective**: Find the number of female customers

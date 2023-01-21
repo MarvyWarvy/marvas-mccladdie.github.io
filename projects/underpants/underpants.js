@@ -181,7 +181,7 @@ _.last = function(array, num) {
 
 
 _.indexOf = function(array, value) {
-    //For loop to iterate and check if any ideces match value
+    //For loop to iterate and check if any indeces match value
     for (let i = 0; i < array.length; i++) {
         if (array[i] === value) {
             return i
@@ -205,6 +205,24 @@ _.indexOf = function(array, value) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value) {
+    //see if array contains value with for loop
+    let output = 0
+    for (let i = 0; i < array.length; i++) {
+        if (value) {
+            (array[i] === value) ? output +=1 : output += 0
+        }
+    }
+    if (output > 0) {
+        return true
+    } else {
+        return false
+    }
+}
+    
+
+
 
 
 //_.contains = function(array, value) {
@@ -263,6 +281,34 @@ _.each = function(collection, func) {
 */
 
 
+
+_.unique = function(array) {
+
+    return [...new Set(array)]
+
+//     let newArr = []
+//     let output = []
+//     for (let i = 0; i < array.length; i++) {
+//          output.push(_.indexOf(array, array[i]))
+//          newArr.push(array[output[i]])
+//     }
+//     return newArr
+}
+
+
+
+
+// _.unique = function(array) {
+//     let newArr = [];
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] == array[i + 1]) {
+//             newArr.push(_.indexOf(array, i + 1))
+//         }
+//     }
+//     //newArr.push(_.indexOf(array, 1))
+//     return newArr
+// }
+
 // _.unique = function(array) {
 //     let newArr = [];
 //     _.indexOf(array)
@@ -286,21 +332,16 @@ _.each = function(collection, func) {
 */
 
 
-//_.filter = function(array, func) 
-    //new array that will be returned at end
-//     let newArr = []
-//     func = _.each()
-//     //need a for loop to iterate through array and invoke the func on each item
-//     for (i = 0; i < array.length; i++) {
-        
-//     //if function tests index of array and its true, push array index to newArr
-//        if (func(array[i]) === true) {
-//         newArr.push(array[i])
-//        }
-        
-//     }
-//     return newArr
-// }
+_.filter = function(array, func) {
+    let newArr = []
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === true) {
+            newArr.push(array[i])
+        }
+    }
+    return newArr
+}
+
 
 
 /** _.reject
@@ -315,6 +356,17 @@ _.each = function(collection, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, func) {
+    let newArr = []
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === false) {
+            newArr.push(array[i])
+        }
+    }
+    return newArr
+}
+
 
 
 /** _.partition
@@ -374,11 +426,11 @@ _.map = function(collection, func) {
         }
     }
     if (!Array.isArray(collection)) {
-        for (let prop in collection) {
-            retVal.push(func(Object.values(collection[prop]), Object.keys(collection), collection))
+         for (let prop in collection) {
+            retVal.push(func(collection[prop], prop, collection))
+        
         }
     }
-    
 //retVal.push(func(collection.hasOwnProperty(prop)), collection[prop], collection)
     return retVal
 }
@@ -393,6 +445,107 @@ _.map = function(collection, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+
+_.pluck = function(array, prop) {
+    let anon = function(){
+        if (prop) {
+            
+            //why when i add which index (array[0] they all become the same one)
+            return array
+            // for (let i = 0; i < array.length; i++) {
+            //     let string = array[2][prop]
+            //     return string
+            // }
+            
+            // for (let key in array) {
+            //     return array[key]
+            // }
+            
+        }
+    }
+    let catcher = []
+    let output = _.map(array,anon)
+        for (let key in array) {
+             catcher[0] = output[key][0][prop] 
+             catcher[1] = output[key][1][prop] 
+             catcher[2] = output[key][2][prop]
+        }
+    
+    return catcher
+    
+    
+
+}
+//     let newArr = []
+    
+//     //iterate over array
+//     //they're giving us an key (prop)
+//     let anon = function() {fdfd
+//         for (let i = 0; i < array.length; i++) {
+//             for (let value in array[i]) {
+//                 if (value === prop) {
+//                     //newArr.push(array[i][value])
+//                     let output = (newArr.push(value) -1)
+//                     return output
+//                 }
+//             }
+//         }
+//     }
+    
+
+     
+//     let order = _.map(array, anon)
+//     for (let i = 0; i < order.length; i++) {
+//         for (let value in array) {}
+//         return array.name[0]
+//     }
+//     //return order
+//     // for (let i = 0; i < array.length; i++) {
+//     //     return newArr
+//     // }
+//     //return newArr
+
+    
+
+
+
+// }
+
+
+// let anon = function() {
+//     for (let i = 0; i < array.length; i++) {
+//         for (let value in array[i]) {
+//             // if (Object.keys(array[i]) === prop) {
+//             //     return Object.values(array[i])
+//             // }
+
+//             if (array[i].hasOwnProperty(prop) === prop) {
+//                  newArr.push(array[i](value))
+//             }
+//         }
+//     }
+// }
+
+
+
+// return _.map(array, anon)
+
+
+
+
+    // for (let i = 0; i < array.length; i++) {
+    //     //pass items to _.map somehow
+    //     for(let key in array) {
+    //         if (array[i].hasOwnProperty(key) === prop) {
+    //             newArr.push(prop)
+    //         }
+    //     }
+        
+    //     //_.map(array[i], )
+    // }
+    // return newArr
+//}
 
 
 /** _.every
@@ -414,7 +567,37 @@ _.map = function(collection, func) {
 * Examples:
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
+    _.every([1,2,3]) -> true
+    _.every([null, undefined, 3]) -> false
 */
+
+
+_.every = function(collection, func) {
+    //let collection = [1,2,3]
+    //let func //undefined
+    //determine if collection is array
+    if (Array.isArray(collection)) {
+        //determine if no function passed in
+        if (func === undefined) {
+            for (let i = 0; i < collection.length; i++) {
+                if (!collection[i]) { // determine fi collection[i] is truthy
+                    return false;
+                } 
+            }
+        } else { //else function was passed in
+            for (let i = 0; i < collection.length; i++) { //determine if result of invoking function is truthy
+                if (!func(collection[i], i, collection)) {
+                    return false;
+                }
+            }
+        }
+    } else { // else its an object
+        //determine if no finction pass in
+
+        //else function was passsed in
+    }  
+    return true
+}
 
 
 /** _.some
@@ -438,6 +621,53 @@ _.map = function(collection, func) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, func) {
+    //let collection = [1,2,3]
+    //let func //undefined
+    //determine if collection is array
+    let noneTrue = 0
+    if (Array.isArray(collection)) {
+        //determine if no function passed in
+        if (func === undefined) {
+            for (let i = 0; i < collection.length; i++) {
+                if (!collection[i]) { // determine fi collection[i] is truthy
+                    return false;
+                } 
+            }
+        } else { //else function was passed in
+            for (let i = 0; i < collection.length; i++) { //determine if result of invoking function is truthy
+                if (!func(collection[i], i, collection)) {
+                    noneTrue++
+                    return true;
+                } else if (func(collection[i], i, collection)) {
+                    return false
+                }
+
+                //its somewhere in here that dictates it
+                return true
+                return false
+                
+            }
+        }
+    } else {
+        for (let i = 0; i < collection.length; i++) {
+            for (let key in collection) {
+                func(collection[key], key, collection)
+                
+            }
+        }
+        
+    }
+    if (noneTrue === 0) {
+        return true
+    }
+
+}
+
+
+// if (!Array.isArray(collection)) {
+//     for (let prop in collection) {
+//        retVal.push(func(collection[prop], prop, collection))
 
 /** _.reduce
 * Arguments:
@@ -447,16 +677,96 @@ _.map = function(collection, func) {
 * Objectives:
 *   1) Call <function> for every element in <collection> passing the arguments:
 *         previous result, element, index
+
 *   2) Use the return value of <function> as the "previous result"
 *      for the next iteration
+
 *   3) On the very first iteration, use <seed> as the "previous result"
+
 *   4) If no <seed> was given, use the first element/value of <collection> as <seed> and continue to the next element
+
 *   5) After the last iteration, return the return value of the final <function> call
 * Edge Cases:
 *   1) What if <seed> is not given?
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+
+
+_.reduce = function(array, func, seed) {
+
+    let result;
+
+    //determine if no see
+    if (seed === undefined) { //determines if seed is not truthy
+        result = array[0];  
+        for (let i = 1; i < array.length; i++) {
+            result = func(result, array[i], i)
+        }
+    } else {//else there is a seed
+        result = seed;
+        for (let i = 0; i < array.length; i++) {
+            result = func(result, array[i], i);
+        }
+    }
+
+    return result
+    
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    //just a for loop since theres no stipulation of its an array or object do dis
+    
+    //invoke reduce
+    //seed or no seed? YES!
+    //result = 0
+    //iterate
+        // 0 
+            //result = func(result, currentVal, currentIndex, collection)
+                             //0.     1.           0            [1,2,3] whatever
+
+            //result = 1
+        // 1
+            // result = 3
+
+    //return result
+
+
+
+    
+    
+    // let output
+    // for (let i = 0; i < array.length; i++) {
+    //     //first iteration so we seed as previous result
+    //     //also set the return of the function to a var to use
+    //     // second
+    //     //if i === 0
+    //     output = func(seed, array[i], i)
+
+    //     //no see given so we use first element of collection as seed
+    //     if(!seed) {
+    //         func(array[0], array[i], i)
+        
+
+    //     // use the return of the function as previous result
+    //     //third ???
+    //     } else {
+    //         func(output, array[i], i)
+    //     }
+    //     //first
+    //     if (i === array.length - 1) {
+    //         return func(output, array[i], i)
+    //     }
+    // }
+//}
+//else if(i === array.length - 1) {
+    //return func(output, array[array.lenght - 1], i)
 
 
 /** _.extend
@@ -473,6 +783,17 @@ _.map = function(collection, func) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+
+_.extend = function(obj1, obj2, more) {
+    //let newObj = {...obj1, ...obj2, ...more}
+    let newObj = Object.assign(obj1, obj2, more)
+    return newObj
+
+}
+
+
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

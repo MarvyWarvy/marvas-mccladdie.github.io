@@ -4,7 +4,7 @@
  * 0. An operator performs some operation on single or multiple operands (data value) and produces a result.
  * Javascript is capable of using arithmetic operators, comparison operators, logical operators, assignment operators, and
  * conditional/Ternary operators.
- * 
+ * //
  * 1. What they do
  * The aformentioned operators are all denoted by a symbol
  *      a.) Arithmetic Operators (" + ", " - ", "  * ", " / ", " % ", " ++ ", and " -- ")

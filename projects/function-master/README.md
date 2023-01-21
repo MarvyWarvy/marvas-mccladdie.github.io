@@ -16,7 +16,7 @@
  - Once they pass they will be **blue** and not red on the page!
 
 # Part 2 - Function Master
-
+//
 ## Review Questions from Module One Handbook?
  - what can we `typeof` ?
  - what can't we `typeof` ?

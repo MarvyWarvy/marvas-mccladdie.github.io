@@ -158,13 +158,14 @@ function isFriend(name, object) {
 //wrong
 function nonFriends(name, array) {
     for (let i = 0; i < array.length; i++) {
-        if (array[i].friends !== includes(name)) {
+        if (array[i].friends !== array.includes(name)) {
             let notFriends = []
             notFriends.push(array[i].friends)
             return notFriends
+            
         }
         
-    }
+    } 
     
 
 

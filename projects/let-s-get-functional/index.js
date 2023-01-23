@@ -130,24 +130,138 @@ var youngestCustomer = function(array) {
 }; //reduce // use the reduce method with NO seed
 
 var averageBalance = function(array) {
-    let avgBal = 0;
-    let length = array.length;
-    array.forEach(({balance}) => avgBal += balance)
-    let avg = avgBal/length
-    return avg
+    let add = (accumulator, value) => accumulator + value
+    let total = 0
+    let avgBal 
+    for (let i = 0; i < array.length; i++) {
+        total += Number([array[i].balance.replace(/,/g, '').slice(1)].reduce(add))
+        avgBal = total / array.length
+      
+    }
+    console.log(avgBal)
+    return avgBal
+}
+
+var firstLetterCount = function(array, letter) {
+    let count = array.filter(
+        (array) => array.name[0] === letter.toUpperCase()
+    )
+return count.length
+};
+
+var friendFirstLetterCount = function(array, customer, letter) {
+
+
+    let friendCount = [];
+        for (let k = 0; k < array.length; k++) {
+            if (array[k].name === customer) {
+                for (let i = 0; i < array[k].friends.length; i++) {
+                    array[k].friends[i].name[0] === letter.toUpperCase() ? friendCount.push(array[k].name) : friendCount = friendCount
+                }
+            }
+        }
+        return friendCount.length
+            
+    
+
+
+//     let count = array.filter(
+//         (array) => array.name === customer && array.friends.name[0] === letter.toUpperCase()
+//     )
+// return count.length
+  
+//     let count = array.filter( array => {
+//         let counter = 0
+//         if (array.name === customer) {
+//             for (let i = 0; i < array.friends.length; i++) {
+//                 //(array) => array.friends[i].name[0] === letter.toUpperCase()
+//                 if (array.friends[i].name[0] === letter.toUpperCase()) {
+//                     counter++
+//                 }
+//             }
+//         }
+//         return counter
+//     });
+// return count.length
 
 };
 
-var firstLetterCount;
+var friendsCount = function(array, name) {
+    
+        let friendCount = [];
+        for (let k = 0; k < array.length; k++) {
+            for (let i = 0; i < array[k].friends.length; i++) {
+                array[k].friends[i].name === name ? friendCount.push(array[k].name) : friendCount = friendCount
+            }
+        }
+        return friendCount
+    
 
-var friendFirstLetterCount;
 
-var friendsCount;
 
-var topThreeTags;
+};
 
-var genderCount;
+var topThreeTags = function(array) {
 
+    let obj = {};
+    let arr = [];
+    for (let i = 0; i < array.length; i++) {
+        array[i].tags.forEach(tag => {
+        if (!obj[tag]) {
+        obj[tag] = 1;
+        } else {
+        obj[tag] += 1
+        }
+    });
+    }
+    let highestValue = 0;
+    let highestValueKey
+    for (let key in obj) {
+        let value = obj[key];
+        if (value > highestValue) {
+        highestValue = value
+        highestValueKey = key
+        }
+        }
+    for (let key2 in obj) {
+        let value2 = obj[key2];
+        if (highestValue === value2){
+            arr.push(key2)
+    }
+    }
+    
+return arr
+
+
+
+
+};
+
+var genderCount = function(array) {
+    let obj = {
+        male: 0,
+        female: 0,
+        "non-binary": 0
+      };
+      let gCount = array.reduce((acc, cur) => acc + cur.gender + " ", 0);
+      gCount = gCount.split(" ")
+      for (let i = 0; i < array.length; i++) {
+        if (gCount[i] === "non-binary") {
+          obj["non-binary"] += 1
+        } else if (gCount[i] === "male") {
+          obj.male += 1
+        } else {
+          obj.female += 1
+        }
+        //console.log(gCount[i])
+      }
+      return obj
+      //console.log(gCount)
+
+
+};
+
+//.   npm start --prefix ./marvas-mccladdie.github.io/projects/let-s-get-functional
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////

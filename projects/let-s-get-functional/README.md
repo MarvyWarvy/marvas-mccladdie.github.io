@@ -20,6 +20,7 @@ An exercise in problem solving in the functional idiom.
 ```
 const _ = require('lodown-oliviasaborush');
 ```
+cd 
 
 ## Step 2 - Solve
  - Implement the functions outlined below, using your `lodown` library

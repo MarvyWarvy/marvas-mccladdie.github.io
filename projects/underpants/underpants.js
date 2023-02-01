@@ -4,6 +4,7 @@
 //
 'use strict';
 
+
 var _ = {};
 
 
@@ -581,7 +582,7 @@ _.every = function(collection, func) {
         //determine if no function passed in
         if (func === undefined) {
             for (let i = 0; i < collection.length; i++) {
-                if (!collection[i]) { // determine fi collection[i] is truthy
+                if (!collection[i]) { // determine if collection[i] is truthy
                     return false;
                 } 
             }

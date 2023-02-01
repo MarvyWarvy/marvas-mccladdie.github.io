@@ -157,19 +157,38 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 //wrong
 function nonFriends(name, array) {
+    let stor = [];
+    let stor2 = [];
+    let stor3 = [];
+
     for (let i = 0; i < array.length; i++) {
-        if (array[i].friends !== array.includes(name)) {
-            let notFriends = []
-            notFriends.push(array[i].friends)
-            return notFriends
-            
+        if (array[i].name !== name) {
+            stor.push(array[i].name)
+        } else {
+            stor2 = array[i].friends
         }
+    }
+
+    for (let i = 0; i < stor.length; i++) {
+        if (!stor2.includes(stor[i])) {
+            stor3.push(stor[i])
+        }
+    }
+    return stor3
+}
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i].friends !== array.includes(name)) {
+//             let notFriends = []
+//             notFriends.push(array[i].friends)
+//             return notFriends
+            
+//         }
         
-    } 
+//     } 
     
 
 
-}
+// }
 
 
 

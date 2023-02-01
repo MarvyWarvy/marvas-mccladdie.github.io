@@ -4,6 +4,7 @@ function repeat(n, action) {
   }
 }
 
+
 function characterScript(code) {
   for (let script of SCRIPTS) {
     if (script.ranges.some(([from, to]) => {

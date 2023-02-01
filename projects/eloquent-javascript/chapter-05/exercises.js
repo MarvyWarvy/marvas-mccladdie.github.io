@@ -2,31 +2,67 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten() {
+//const { characterScript } = require("./helpers");
 
+function flatten(arrs) {
+  flat = arrs.reduce((accumulator, current) => {
+    if(Array.isArray(current)){
+      accumulator = accumulator.concat(flatten(current));
+    } else {
+      accumulator.push(current);
+    }
+      return accumulator
+  }, [])
+  return flat
 }
+
 
 // /////////////////////////////////////////////////////////////////////////////
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
-
+function loop(value, test, update, body) {
+  if (test(value)) {
+    body(value)
+    return loop(update(value), test, update, body)
+  } else {
+    return
+  }
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function every() {
-
+function every(array, func, count=0) {
+  for (let i = 0; i < array.length; i++) {
+    func(array[i]) ? count++ : null
+  }
+  return count === array.length ? true : false
 }
 
 // /////////////////////////////////////////////////////////////////////////////
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
+function dominantDirection(string) {
+   
+  let ltr = [];
+  let rtl = [];
+
+  for (let i = 0; i < string.length; i++) {
+    let script = characterScript(string.charCodeAt(i));
+
+    if (script !== null) {
+      script.direction === "ltr" ? ltr.push(script) : rtl.push(script);
+    }
+  }
+
+  if (ltr.length > rtl.length) {
+    return "ltr"
+  } else {
+    return "rtl"
+  }
 
 }
 

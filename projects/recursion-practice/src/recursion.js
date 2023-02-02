@@ -196,41 +196,35 @@ var reverse = function(string, newString=[]) {
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
 
-  let reverse = function(string, newString=[]){
-    //base
-    if(string.length === 0) {
-      return newString.join("").toLowerCase()
-    }
-    //recursion
-    if(string[0] !== " "){
-    newString.unshift(string[0])
-    }
-    return reverse(string.slice(1), newString)
-  }
+        let reverse = function(string, newString=[]){
+          //base
+          if(string.length === 0) {
+            return newString.join("").toLowerCase()
+          }
+          //recursion
+          if(string[0] !== " "){
+          newString.unshift(string[0])
+          }
+          return reverse(string.slice(1), newString)
+        }
 
-  let reversed = reverse(string)
+        let reversed = reverse(string)
   
   
   //base
-  if (string.length === 0) {
-    return 
-  }
-
-
+  
   //recur
   for (let i = 0; i < reversed.length; i++) {
     if (string[0].toLowerCase() !== reversed[i].toLowerCase()) {
       return false
     }
-    // if (string[0].toLowerCase() === reversed[i].toLowerCase()) {
-    //   return true
-    // }
+
     return true
   }
   
 
-  return palindrome(string.slice(1))
-  return palindrome(string.slice(1))
+  
+  
 };
   // let strong = string.replace(/\s/g, '')
   // if (strong.toLowerCase() === reversed.toLowerCase()){

@@ -627,45 +627,29 @@ _.some = function(collection, func) {
     //let collection = [1,2,3]
     //let func //undefined
     //determine if collection is array
-    let noneTrue = 0
     if (Array.isArray(collection)) {
         //determine if no function passed in
         if (func === undefined) {
             for (let i = 0; i < collection.length; i++) {
-                if (!collection[i]) { // determine fi collection[i] is truthy
-                    return false;
+                if (collection[i]) { // determine if collection[i] is truthy
+                    return true;
                 } 
             }
         } else { //else function was passed in
             for (let i = 0; i < collection.length; i++) { //determine if result of invoking function is truthy
-                if (!func(collection[i], i, collection)) {
-                    noneTrue++
-                    return true;
-                } else if (func(collection[i], i, collection)) {
-                    return false
-                }
-
-                //its somewhere in here that dictates it
-                return true
-                return false
+                if (func(collection[i], i, collection)) {
+                    return true
+                } 
                 
             }
         }
-    } else {
-        for (let i = 0; i < collection.length; i++) {
-            for (let key in collection) {
-                func(collection[key], key, collection)
-                
-            }
-        }
-        
-    }
-    if (noneTrue === 0) {
+    } else { // else its an object
+        //determine if no finction pass in
         return true
-    }
-
+        //else function was passsed in
+    }  
+    return false
 }
-
 
 // if (!Array.isArray(collection)) {
 //     for (let prop in collection) {

@@ -1,5 +1,6 @@
 'use strict';
 
+
 // YOU KNOW WHAT TO DO //
 
 /**
@@ -22,7 +23,7 @@ function each(collection, action) {
     }
 }
 module.exports.each = each;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * 
  * identity: Returns input value unchanged.
@@ -38,3 +39,85 @@ function identity(value) {
 }
 
 module.exports.identity = identity
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * typeOf : return type of input value as string
+ * @param {Any value}: Function takes in any value 
+ * @param {string}: return type of value as string
+ */
+
+function typeOf(value) {
+    if (Array.isArray(value)) {
+        return "array"
+    } else if ( value === null) {
+        return "null"
+    } else {
+        return typeof value
+    }
+
+}
+
+module.exports.typeOf = typeOf
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * first: loops over an array and potentially returns the first <number> items of <array>
+ * 
+ * @param {Array and a Number}: Function takes in an array and a number
+ * @return {returns the first <number> items of <array>}: Function returns the first <number> items of <array>
+ * 
+ */
+
+function first(array, number) {
+    let output = []
+    if (!(Array.isArray(array))) {
+        return []
+    } else if (number < 0) {
+        return []
+    } else if (number > array.length ) {
+        return array
+    } else if (!number || typeof number !== "number") {
+        return array[0]
+    } else {
+        for (let i = 0; i < number; i++) {
+            output.push(array[i])
+        }
+        return output
+    }
+};
+
+module.exports.first = first
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * last: loops over an array and returns the last <number> items of <array>
+ * 
+ * @param {Array and a Number}: Function takes in an array an a number
+ * @return {returns the last <number> items of <array>}: Function returns <number> items of <array>
+ */
+
+function last(array, number) {
+    let output = []
+    if (!(Array.isArray(array))) {
+        return []
+    } else if (number < 0) {
+        return []
+    } else if (number > array.length ) {
+        return array
+    } else if (!number || typeof number !== "number") {
+        return array[array.length - 1]
+    } else {
+        for (let i = number - 1; i < array.length; i++) {
+            output.push(array[i])
+        }
+        return output
+    }
+};
+
+module.exports.last = last
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -87,30 +87,31 @@ let dogs = [
     }
 ]
 
+//concat our parameters into a sentence then log that to the console
+
 // 1.
 var greeting = function(greeting, location, time) {
-    part1 = `Hello everyone, ${greeting}!`
-    part2 = ` We are on planet ${location}`
-    part3 = ` the show will start ${time}.`
-    console.log(part1.concat(part2).concat(part3))
-    //console.log(`$Hello everyone, ${greeting}! We are on planet ${location} the show will start ${time}`)
+    console.log(greeting + " " + location + " " + time)
 };
 
-greeting("welcome", "KaleLin", "soon")
+
 
 
 // 2.
-var contestants = function(array) {
-    //should return number of entries from dogs array
+//So we want to iterate through our array and count how many items are there
+
+var contestants = function(array){
     return array.length
 };
 
 
 
-
 // 3.
-var filterSpecies = [];
-dogs.filter(dog => dog.species === "dog" ? filterSpecies.push(dog) : null)
+//Ok so, using filter put every entry that is a dog in a new array
+var filterSpecies = dogs.filter(entry => entry.species === "dog")
+    
+
+
     
 
 
@@ -118,25 +119,24 @@ dogs.filter(dog => dog.species === "dog" ? filterSpecies.push(dog) : null)
 
 
 // 4. 
-var dogContestants = [...filterSpecies, ];
+var dogContestants = [... filterSpecies];
 
 
 
 
 // 5. 
-    //use map to add a class property to each item in dogconstestants
+//using map assign a new class to each dog based on their weight
 var dogsWithClasses = dogContestants.map(dog => {
     if (dog.weight <= 10) {
         dog.class = "red"
         return dog
-    } else if (dog.weight <= 20 && dog.weight >= 11) {
-        dog.class = "yellow"
-        return dog 
-    } else {
+    } else if(dog.weight >= 21) {
         dog.class = "green"
         return dog
+    } else {
+        dog.class = "yellow"
+        return dog
     }
-
 });    
 
 
@@ -146,9 +146,116 @@ var dogsWithClasses = dogContestants.map(dog => {
 
 
 // 6.
-var firstInClass;
+
+//Ok so, using recursion, loop through our array and copy 
+var firstInClass = function(array, obj={}) {
+
+    //base
+    if(array.length === 0)
+    return obj
+
+    //recur
+    obj = {...obj, ...array[0]}
+
+    return firstInClass(array.slice(1), obj)
+
+
+};
 
 
 
 // 7.
-var votes;
+
+//using reduce count all votes casted
+var votes = dogs.reduce((accu, curr) => {
+    
+    accu += curr.votes
+    return accu
+
+},0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var greeting = function(greeting, location, time) {
+//     part1 = `Hello everyone, ${greeting}!`
+//     part2 = ` We are on planet ${location}`
+//     part3 = ` the show will start ${time}.`
+//     console.log(part1.concat(part2).concat(part3))
+//     //console.log(`$Hello everyone, ${greeting}! We are on planet ${location} the show will start ${time}`)
+// };
+
+// greeting("welcome", "KaleLin", "soon")
+
+
+// // 2.
+// var contestants = function(array) {
+//     //should return number of entries from dogs array
+//     return array.length
+// };
+
+
+
+
+// // 3.
+// var filterSpecies = [];
+// dogs.filter(dog => dog.species === "dog" ? filterSpecies.push(dog) : null)
+    
+
+
+
+
+
+// // 4. 
+// var dogContestants = [...filterSpecies, ];
+
+
+
+
+// // 5. 
+//     //use map to add a class property to each item in dogconstestants
+// var dogsWithClasses = dogContestants.map(dog => {
+//     if (dog.weight <= 10) {
+//         dog.class = "red"
+//         return dog
+//     } else if (dog.weight <= 20 && dog.weight >= 11) {
+//         dog.class = "yellow"
+//         return dog 
+//     } else {
+//         dog.class = "green"
+//         return dog
+//     }
+
+// });    
+
+
+
+
+    
+
+
+// // 6.
+// var firstInClass;
+
+
+
+// // 7.
+// var votes;

@@ -26,7 +26,17 @@
  * 
  *      - Object - an Object is a value in memory which is possible referenced by an identifier. In JS, the only
  *                 mutable values are objects
- *                      --> The object Data Type can contain: An object, an array, a date      
+ *                      --> The object Data Type can contain: An object, an array, a date
+ * 
+ *      - Array - The array object enable storing a collection of multiple items under a single variable name,
+ * 
+ *      - Function - Functions are one of the fundamental building blocks in JavaScript. They are blocks of code designed to perform a particular task.
+ * 
+ *      - NaN - The global NaN property is a value representing Not-A-Number.
+ * 
+ *      - Infinity and -Infinity  - Infinity and Negative Infinity are properties in JavaScript that represent positive infinity and negative infinity.
+ * 
+ *         
  *                
  * 
  * 2. Examples
@@ -48,6 +58,18 @@
  *          //Undefined -> let x
  *                         console.log(x) //Will log undefined
  * 
+ *          //Arrays ----> let favNums = [13, 17, 5, 10 4]
+ * 
+ *          //Function --> let numFromFavNums = function(favNums, index) {
+ *                                                  console.log(favNums[index])
+ *                                              }                                   --> prints a property from input array using the input index
+ *      
+ *          //NaN -------> console.log(isNaN("W")) ---> prints true
+ *                         console.log(isNaN(5)) -----> prints false
+ * 
+ *          //Infinity/-Infinity --> console.log(10 ** 1000) ---> prints Infinity
+ *                                   console.log(Math.log(0)) --> prints -Infinity
+ * 
  * 3. Important things to note
  *      - In Javascript, Data Types are dynamic
  *          - Example
@@ -55,10 +77,17 @@
  *              x = 5; //now x is a number
  *              x = "John" //now x is a string
  * 
+ *      -What is the difference between primitive and complex data types?
+ *          - Primitve values are passed to a function by copy, complex values are by reference
  * 
  * 
  * 
  * 
+ * array
+ * fuction
+ * nan
+ * infinity and -infinity
+ * difference between simple and complex data types
  * 
  * 
  * 

@@ -7,37 +7,61 @@
  * 
  * 
  * Syntax
- * 1. Functions in Javascript are defined with the function keyword, followed by a name, followed by 
- *    parentheses
- *
- *      a.) Function names can contain letters, digits, underscores, and dollar signs
- *      b.) The parentheses may include parameter names separated by commas 
- *      c.) function arguments are the values received by the function when it is invoked
- *      d.) inside of the function, the arguments behave as local variables
- *
+ * 0 Functions in Javascript are blocks of code designed to perform a particular task
+ *      a.) the two phases to using function are that first we must declare it, then we mus invoke it
  * 
- *                  function doSomething(parameter1, parameter2, parameter3) {
- *                          code to be executed
- *                  }
- *          
- *              //function invocation
- *                          doSomething(arg1, arg2, arg3)
- * 
- * 2. When JavaScript reaches a return statement, the function will stop executing. if the function was invoked
- *    from a statement, javascript will return to execute the code after the invoking statement. The return value
- *    is returned back to the caller
+ *      b.) When declaring a function we can choose to create either a named or an anonymous function. The syntax for both differ slightly
+ *              Named functions start with the keyword function then whatever the functions name is. Anonymous functions are assigned to a variable
  *              
- *                  function myFunction(a, b) {
- *                      return a * b
- *                  }
- *      
- *                  let x = myFunction(4, 3);
  * 
- *   
- * Important Things to Note               
- * 3. So why functions?
- *      - functions are useful because they allow us to define the code once, and reuse it as many
- *        times as we like
+ *              Examples - 
+ *                              //named function                        //anonymous function
+ *                          function doSomething() {                let somethingDone = function() {
+ *                              code to be executed                     code to be executed
+ *                          }                                       }
+ * 
+ *                  //To invoke a named function you must use       //To invoke anonymous functions you must use the variable its assigned
+ *                  its name followed by parentheses                  to followed by parentheses
+ *                      doSomething()                                       somethingDone
+ *
+ *      c.) Functions can also take optionally take inputs known as parameters
+ * 
+ *              Example - 
+ * 
+ *                          function doSomething(input) {
+ *                              return input
+ *                          }
+ * 
+ *                          console.log(doSomething("Hello")) ---> will spit out hello
+ * 
+ *      d.) Functions can access variable created in their parent or global scope but variables created inside of a function will not be able to be accessed outside of the function
+ * 
+ *              Example -
+ *  
+ *                      let namee = "Marv"                                      function sayName() {
+ *                      function sayHi(name) {                                      let namee = "Marv"
+ *                          return "Hi " + name                                     
+ *                      }                                                       }
+ *              
+ *                      console.log(sayHi(namee)) -- >logs Hi Marv              console.log( "hello " + namee) --> Throws an error because we cant use name since it is block scoped to our function
+ *     
+ * 
+ *      e.) Closures - A closure is a function having access to the parent scope, even after the parent function has closed 
+ * 
+ *              Example - 
+ *          
+ *                      function madeAdder(x) {
+ *                         return function(y) {
+ *                              return x + y
+ *                          }
+ *                      }
+ *                      let add5 = makeAdder(5);
+ *                      let add10 = makeAdder(10);
+ * 
+ *                      console.log(add5(2)) --> logs 7
+ *                      console.log(add10(2)) --> logs 12
+ * 
+ *  
  * 
  * 
  * 

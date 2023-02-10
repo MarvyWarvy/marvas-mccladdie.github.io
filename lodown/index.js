@@ -34,7 +34,6 @@ module.exports.each = each;
  */
 
 function identity(value) {
-    //return value unchanged
     return value;
 }
 
@@ -66,8 +65,9 @@ module.exports.typeOf = typeOf
 /**
  * first: loops over an array and potentially returns the first <number> items of <array>
  * 
- * @param {Array and a Number}: Function takes in an array and a number
- * @return {returns the first <number> items of <array>}: Function returns the first <number> items of <array>
+ * @param {Array}: Function takes in an array
+ * @param {Number}: Function takes in a number
+ * @return {Any value}: Function returns the first n elements from an array
  * 
  */
 
@@ -96,8 +96,9 @@ module.exports.first = first
 /**
  * last: loops over an array and returns the last <number> items of <array>
  * 
- * @param {Array and a Number}: Function takes in an array an a number
- * @return {returns the last <number> items of <array>}: Function returns <number> items of <array>
+ * @param {Array}: Function accepts  an array =
+ * @param {Number}: Fuction accepts a number
+ * @return {Any value}: Function returns the first n elements from an array
  */
 
 function last(array, number) {
@@ -124,8 +125,9 @@ module.exports.last = last
 
 /**
  * indexOf: loops through and returns index of <array> that is the first occurance of <value>
- * @param {Array and a Value}: Function accepts an array and a value
- * @return {number}: Function returns a number
+ * @param {Array}: Function accepts an array
+ * @param {Value}: Function accepts a value
+ * @return {number}: Function returns the index of the value found. If no value is found then function returns -1.
  */
 
 function indexOf(array, value) {
@@ -142,8 +144,9 @@ module.exports.indexOf = indexOf
 
 /**
  * contains: loops through an array and true if <array> contains <value>
- * @param {Array and a Value}: Function accepts an array and a value
- * @return {boolean}: Function returns true or false
+ * @param {Array}: Function accepts an array
+ * @param {Value}: Function accepts a value
+ * @return {boolean}: Function returns true if array contains value, false otherwise
  */
 
 function contains(array, value) {
@@ -167,11 +170,10 @@ module.exports.contains = contains
 /**
  * Unique: returns a new array of all elements from <array> with duplicates removed
  * @param {Array}: Function accepts an array
- * @return {Array}: Function returns a new array
+ * @return {Array}: Function returns a new array of all elements from input array with duplicates removed
  */
 
 function unique(array) {
-
     return [...new Set(array)]
 }
 
@@ -180,9 +182,10 @@ module.exports.unique = unique
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Filter: Loops through an <array> passing the arguments: element, it's index, <array> and will return a new array of elements
- *         for which calling the function returned true
- * @param {Array and a Function}: Function accepts an array and a function
+ * Filter: Loops through an <array> passing the arguments: element, it's index, array, to a test function. It will return a new array of elements for which
+ *         calling the test function returned true
+ * @param {Array}: Function accepts an array
+ * @param {Function}: Function accepts a function
  * @return {Array}: Function returns a new array of elements
  */
 
@@ -201,8 +204,33 @@ module.exports.filter = filter
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Partition: calls a function for each element in <array> passing the args: element, key, <array>, and returns an array made of two sub arrays
- * @param {Array and a Function}: Function accepts an array and a function
+ * Reject: Accepts an array and a function. It calls the test function for each element in the input array passing the arguments: the element, it's index, array.
+ *         It returns a new array of elements for which calling the input test function returned false
+ * @param {Array}: Function accepts an array
+ * @param {Function}: Function accepts a funcion
+ * @return {Array}: Function returns a new array of elements
+ */
+
+function reject(array, func) {
+    let newArr = []
+    for (let i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === false) {
+            newArr.push(array[i])
+        }
+    }
+    return newArr
+}
+
+module.exports.reject = reject
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Partition: Loops through an <array> passing the arguments: element, it's index, array, to a test function. and returns an array made of two sub arrays.
+ *            Returns an array of two sub arrays. One for which all the values that the test function returned something truthy and 
+ *            the other for all the values the test function returned something falsy
+ * @param {Array}: Function accepts an array
+ * @param {Function}: Function accepts a function
  * @return {Array}: Function returns an array made of two sub arrays
  */
 
@@ -248,8 +276,9 @@ module.exports.map = map
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Pluck: Returns an array containing the value of <property> for every element in <array>
- * @param {Array of objects and a property}: Function accepts an array of objects and a property
+ * Pluck: Pluck accepts an array of objects and a property. It returns an array containing the value of the input property for every element in the input array
+ * @param {Array}: Function accepts an array of objects and a property
+ * @param {Property}: Function accpets a property
  * @return {Array}: Function returns a new array
  */
 
@@ -360,3 +389,21 @@ function reduce(array, func, seed) {
 }
 
 module.exports.reduce = reduce
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Extend: Accepts a baseline of two objects and potentially more objects. It copies the properties from object 2 to object 1. If more objects are passed in,
+ *         it will copy their properties to object 1 as well, in the order in which they were passed in. It returns the updated object 1
+ * @param {Object}: Function accepts an object
+ * @param {Object}: Function accepts an object
+ * @param {More Objects?}: Function should be able to accept more objects
+ * @return {Object}: Function should return an updated object 1
+ */
+
+function extend(obj1, obj2, more) {
+    let newObj = Object.assign(obj1, obj2, more)
+    return newObj
+}
+
+module.exports.extend = extend

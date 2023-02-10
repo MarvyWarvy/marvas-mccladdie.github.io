@@ -115,6 +115,28 @@
  * 
  *                  console.log(d = x > y? y : x); ---> Logs the value of d, 5 to the console.
  * 
+ * 
+ *      f.) Exponentation Operator: returns the result of raising the first operand to the power of the second operand
+ *          Its use is equivalent to Math.pow()
+ * 
+ *              Example -
+ *                      console.log(3 ** 4) ---> will log 81
+ * 
+ *  
+ *      g.)Unary operators: Unary operators work on one value
+ *          - The Unary plus operator is a plus sign that when placed in front of does a numeric value does nothing
+ *              Example - 
+ *                          let x = 10
+ *                          let y = +x
+ *                          console.log(y) ---> logs 10
+ * 
+ *          - The Unary minus The unary minus operator is a single minus sign (-) that when placed in front of a number, negates it.
+ *              Example - 
+ *                          let x = 10
+ *                          let y = -x
+ *                          console.log(y) ---> logs -10
+ *              
+ * 
  *              
  * 
  * 
